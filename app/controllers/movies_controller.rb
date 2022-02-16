@@ -10,17 +10,17 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     #added on 15-02
     
-    sortby= params[:target]
-    if sortby=='title'
+    @sortby= params[:target]
+    if @sortby=='title'
       @title_header= 'hilite'
       sortedby = {:sorted => :title }
-    elsif sortby=='release_date'
+    elsif @sortby=='release_date'
       @release_date_header= 'hilite'
       sortedby ={ :sorted => :release_date }
     else
     end
-    @movies = Movie.order sortby
-   #@movies = Movie.order params[:target]
+    #@movies = Movie.order sortby
+    @movies = Movie.order params[:target]
   end
 
   def new
