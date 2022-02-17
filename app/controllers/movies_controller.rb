@@ -12,7 +12,8 @@ class MoviesController < ApplicationController
 
     @all_ratings = Movie.movieRatings
 
-    if params[:targetSort].nil? && params[:ratings].nil? && (session[:targetSort].nil? || !session[:ratings].nil?)
+    if !params[:targetSort] && !params[:ratings] && (session[:targetSort] || session[:ratings])
+       flash.keep
        redirect_to movies_path({:targetSort => session[:targetSort], :ratings => session[:ratings]})
     end
     
@@ -20,20 +21,19 @@ class MoviesController < ApplicationController
       
     
     @ratingsChecked = params[:ratings]
+    @dummy = session[:targetSort]
     @prevCheckedSession = session[:ratings]
     if @ratingsChecked
       #get keys of the checked ratings
       @ratings= params[:ratings].keys
-      
+      #@movies = Movie.order session[:targetSort]
       #remeber in sessions what keys have been previously checked
       session[:ratings] = @ratingsChecked
     elsif session[:ratings]
       #restore previous session ratings 
       @ratings = session[:ratings].keys
-      
     else
       @ratings = @all_ratings
-      
     end
     
     #added on 15-02

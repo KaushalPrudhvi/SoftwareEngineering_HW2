@@ -7,16 +7,16 @@
     <%= rating %>
     <%= check_box_tag "ratings[#{rating}]", 1 , @ratings.include?(rating), id: "ratings_#{rating}" %>
   <% end %>
-  <%= submit_tag 'Refresh', :class => 'btn btn-primary', id: 'ratings_submit' %>
+  <%= submit_tag 'Refresh', :class => 'btn btn-primary', :id => 'ratings_submit' %>
   
 <% end %>
 <%#  Part 1: Start here... %>
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th class ="<%= (@sortby == 'title') ? @title_header: "" %>"><%= link_to 'Movie Title', movies_path(:targetSort => 'title' ,  :ratings => @ratingsChecked), :id=> 'title_header'  %></th>
+      <th class ="<%= (@sortby == 'title') ? @title_header: "" %>"><%= link_to 'Movie Title', movies_path(:targetSort => 'title'), :id=> 'title_header'  %></th>
       <th>Rating</th>
-      <th class ="<%= (@sortby == 'release_date') ? @release_date_header: "" %>"> <%= link_to 'Release Date', movies_path(:targetSort => 'release_date', :ratings => @ratingsChecked), :id=>'release_date_header'%> </th>
+      <th class ="<%= (@sortby == 'release_date') ? @release_date_header: "" %>"> <%= link_to 'Release Date', movies_path(:targetSort => 'release_date'), :id=>'release_date_header'%> </th>
       <th>More Info</th>
     </tr>
   </thead>
