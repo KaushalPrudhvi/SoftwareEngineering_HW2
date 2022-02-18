@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.movieRatings
 
     if !params[:targetSort] && !params[:ratings] && (session[:targetSort] || session[:ratings])
-       flash.keep
+       #flash.keep
        redirect_to movies_path({:targetSort => session[:targetSort], :ratings => session[:ratings]})
     end
     
@@ -39,10 +39,10 @@ class MoviesController < ApplicationController
     #added on 15-02
     #where is used to filter queries so that we can get only those which we have specified 
     #where! is destructive in nature
-    @movies.where!(:rating => @ratings)
-
     
-    @sortby= params[:targetSort] 
+    @movies.where!(:rating => @ratings)
+    
+    @sortby= params[:targetSort] || session[:targetSort]
     
     if @sortby
     
@@ -58,9 +58,11 @@ class MoviesController < ApplicationController
         session[:targetSort]=  "release_date"
       
       end
+    
     end
       
-    
+    @movies.where!(:rating => @ratings)
+
     
   end
 =begin  
