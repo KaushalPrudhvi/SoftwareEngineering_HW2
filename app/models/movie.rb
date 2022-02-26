@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
     
     def self.movieRatings
-        return Array.new(['G','PG','PG-13','R'])
+        return self.pluck(:rating).uniq
     end
 end

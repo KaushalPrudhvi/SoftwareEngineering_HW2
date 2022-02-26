@@ -48,12 +48,12 @@ class MoviesController < ApplicationController
     
     
       if @sortby== 'title'
-        @title_header= 'hilite'
+        @title_header= 'hilite bg-warning'
         @movies = Movie.order("#{@sortby} ASC")
         session[:targetSort]=  "title"
         
       elsif @sortby== 'release_date'
-        @release_date_header= 'hilite'
+        @release_date_header= 'hilite bg-warning'
         @movies = Movie.order("#{@sortby} ASC")
         session[:targetSort]=  "release_date"
       
