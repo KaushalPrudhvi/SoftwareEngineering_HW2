@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.movieRatings
 
     if !params[:targetSort] && !params[:ratings] && (session[:targetSort] || session[:ratings])
-       #flash.keep
+       flash.keep
        redirect_to movies_path({:targetSort => session[:targetSort], :ratings => session[:ratings]})
     end
     
